@@ -27,110 +27,157 @@ public class Customer extends  BaseEntity {
 	
 	@Column(length = 20 , name = "last_name")
 	private String lastName;
-	
 	@Column(length = 30 ,unique= true)
 	private String email;
-	
+	@Column(length = 20, nullable = false) // not null constraint
+	private String password;
+	@Column(name = "phone_no", length = 14, unique = true)
+	private String phoneNo;
 	private  LocalDate dob;
+	
 	
 	@Enumerated(EnumType.STRING)
 	@Column(length = 30)
 	private Gender gender;
 	
-	@OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	@OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	@JoinColumn(name= "address")
 	private Address address;
 
-	@OneToMany(mappedBy ="customers",cascade = CascadeType.ALL)
-    private List<Booking> booking;
+//	@OneToMany(mappedBy ="customers",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+//    private List<Booking> booking=new ArrayList<>();
 	
-	 
+	
 	
 	public Customer() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Customer(String firstName, String lastName, String email, LocalDate dob, Gender gender, Address address,
-			List<Booking> booking, Review reviews) {
+	
+	//para-ctor
+		
+
+		//getter & setter
+		public String getFirstName() {
+			return firstName;
+		}
+
+		public Customer(String firstName, String lastName, String email, String password, String phoneNo, LocalDate dob,
+			Gender gender, Address address) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
+		this.password = password;
+		this.phoneNo = phoneNo;
 		this.dob = dob;
 		this.gender = gender;
 		this.address = address;
-		this.booking = booking;
+	}
+
+
 		
-	}
 
-	public String getFirstName() {
-		return firstName;
-	}
+//		public List<Booking> getBooking() {
+//			return booking;
+//		}
+	//
+//		public void setBooking(List<Booking> booking) {
+//			this.booking = booking;
+//		}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
+		public String getLastName() {
+			return lastName;
+		}
 
-	public String getLastName() {
-		return lastName;
-	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
+		public void setLastName(String lastName) {
+			this.lastName = lastName;
+		}
 
-	public String getEmail() {
-		return email;
-	}
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+		public String getEmail() {
+			return email;
+		}
 
-	public LocalDate getDob() {
-		return dob;
-	}
 
-	public void setDob(LocalDate dob) {
-		this.dob = dob;
-	}
+		public void setEmail(String email) {
+			this.email = email;
+		}
 
-	public Gender getGender() {
-		return gender;
-	}
 
-	public void setGender(Gender gender) {
-		this.gender = gender;
-	}
+		public String getPassword() {
+			return password;
+		}
 
-	public Address getAddress() {
-		return address;
-	}
 
-	public void setAddress(Address address) {
-		this.address = address;
-	}
+		public void setPassword(String password) {
+			this.password = password;
+		}
 
-	public List<Booking> getBooking() {
-		return booking;
-	}
 
-	public void setBooking(List<Booking> booking) {
-		this.booking = booking;
-	}
+		public String getPhoneNo() {
+			return phoneNo;
+		}
 
-	@Override
-	public String toString() {
-		return "Customer [firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", dob=" + dob
-				+ ", gender=" + gender + ", address=" + address + ", booking=" + booking + "]";
-	}
 
-	
+		public void setPhoneNo(String phoneNo) {
+			this.phoneNo = phoneNo;
+		}
 
-	
 
-	
+		public LocalDate getDob() {
+			return dob;
+		}
+
+
+		public void setDob(LocalDate dob) {
+			this.dob = dob;
+		}
+
+
+		public Gender getGender() {
+			return gender;
+		}
+
+
+		public void setGender(Gender gender) {
+			this.gender = gender;
+		}
+
+
+		public Address getAddress() {
+			return address;
+		}
+
+
+		public void setAddress(Address address) {
+			this.address = address;
+		}
+
+
+		public void setFirstName(String firstName) {
+			this.firstName = firstName;
+		}
+
+
+		//toString
+		@Override
+		public String toString() {
+			return "Customer [firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", password="
+					+ password + ", phoneNo=" + phoneNo + ", dob=" + dob + ", gender=" + gender + ", address=" + address
+					+ "]";
+		}
+
+
+		//toString
+		//@Override
+//		public String toString() {
+//			return "Customer [firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", dob=" + dob
+//					+ ", gender=" + gender + ", address=" + address /*+ ", booking=" + booking */+ "]";
+//		}
+//	
 	
 }
 

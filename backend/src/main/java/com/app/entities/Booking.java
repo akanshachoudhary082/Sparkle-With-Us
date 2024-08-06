@@ -32,7 +32,7 @@ public class Booking extends BaseEntity{
 	private LocalDate bookingDate;
 	private LocalTime timeSlot;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "customer_Id", nullable = false)
 	private Customer customers;
 	
