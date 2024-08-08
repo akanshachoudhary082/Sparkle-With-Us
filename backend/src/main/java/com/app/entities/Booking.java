@@ -1,7 +1,6 @@
 package com.app.entities;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,23 +13,14 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "booking")
-public class Booking extends BaseEntity{
-
-//	@Id
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)
-//	@Column(name = "book_id")
-//	private Long bookId;
-//	@Column(name = "cust_id", nullable = false)
-//	private Long custId;
-//	@Column(name = "service_id", nullable = false)
-//	private Long serviceId;
-	
+public class Booking extends BaseEntity
+{
 	@Enumerated(EnumType.STRING)
-	@Column(length = 50)
+	@Column(name="booking_status", length = 50, nullable = false)
 	private BookStatus bookStatus;
 
-	private LocalDate bookingDate;
-	private LocalTime timeSlot;
+	@Column(name="booking_date_time", nullable = false)
+	private LocalDateTime bookingDate;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "customer_Id", nullable = false)
@@ -41,11 +31,10 @@ public class Booking extends BaseEntity{
 		// TODO Auto-generated constructor stub
 	}
 
-	public Booking(BookStatus bookStatus, LocalDate bookingDate, LocalTime timeSlot, Customer customers) {
+	public Booking(BookStatus bookStatus, LocalDateTime bookingDate, Customer customers) {
 		super();
 		this.bookStatus = bookStatus;
 		this.bookingDate = bookingDate;
-		this.timeSlot = timeSlot;
 		this.customers = customers;
 	}
 
@@ -57,20 +46,12 @@ public class Booking extends BaseEntity{
 		this.bookStatus = bookStatus;
 	}
 
-	public LocalDate getBookingDate() {
+	public LocalDateTime getBookingDate() {
 		return bookingDate;
 	}
 
-	public void setBookingDate(LocalDate bookingDate) {
+	public void setBookingDate(LocalDateTime bookingDate) {
 		this.bookingDate = bookingDate;
-	}
-
-	public LocalTime getTimeSlot() {
-		return timeSlot;
-	}
-
-	public void setTimeSlot(LocalTime timeSlot) {
-		this.timeSlot = timeSlot;
 	}
 
 	public Customer getCustomers() {
@@ -83,7 +64,6 @@ public class Booking extends BaseEntity{
 
 	@Override
 	public String toString() {
-		return "Booking [bookStatus=" + bookStatus + ", bookingDate=" + bookingDate + ", timeSlot=" + timeSlot
-				+ ", customers=" + customers + "]";
+		return "Booking [bookStatus=" + bookStatus + ", bookingDate=" + bookingDate + ", customers=" + customers + "]";
 	}
 }

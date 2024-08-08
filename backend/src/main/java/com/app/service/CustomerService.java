@@ -16,4 +16,5 @@ public interface CustomerService
 	
 	Customer updateCustomerDetails(Customer customer);
 	
+	List<Customer> getAllCustomersSortedByName();
 }

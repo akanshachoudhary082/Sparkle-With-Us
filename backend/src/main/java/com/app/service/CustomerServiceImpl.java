@@ -1,7 +1,9 @@
 package com.app.service;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,9 +39,9 @@ public class CustomerServiceImpl implements CustomerService
 	}
 
 	@Override
-	public Customer addCustomerDetails(Customer nweCustomer) 
+	public Customer addCustomerDetails(Customer newCustomer) 
 	{
-		return customerRepository.save(nweCustomer);
+		return customerRepository.save(newCustomer);
 	}
 	
 	@Override
@@ -58,5 +60,19 @@ public class CustomerServiceImpl implements CustomerService
 	{
 		return customerRepository.save(customer);
 	}
+
+	@Override
+    public List<Customer> getAllCustomersSortedByName() {
+        Comparator<Customer> byFirstName = new Comparator<Customer>() {
+            @Override
+            public int compare(Customer c1, Customer c2) {
+                return c1.getFirstName().compareToIgnoreCase(c2.getFirstName());
+            }
+        };
+
+        return customerRepository.findAll().stream()
+            .sorted(byFirstName)
+            .collect(Collectors.toList());
+    }
 
 }

@@ -2,6 +2,9 @@ package com.app.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -9,10 +12,10 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "review")
 public class Review extends BaseEntity {
-//
-//	@Id
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)
-//	private Long id ;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id ;
 
 	@Column(length = 20, name = "first_name")
 	private String firstName;
@@ -41,6 +44,13 @@ public class Review extends BaseEntity {
 		this.customer = customer;
 	}
 
+	  public Long getId() {
+	        return id;
+	    }
+
+	    public void setId(Long id) {
+	        this.id = id;
+	    }
 	public String getFirstName() {
 		return firstName;
 	}
@@ -83,10 +93,9 @@ public class Review extends BaseEntity {
 	}
 
 	@Override
-	public String toString() {
-		return "Review [firstName=" + firstName + ", lastName=" + lastName + ", comments=" + comments + ", rating="
-				+ rating + ", customer=" + customer
-				+ "]";
-	}
+	 public String toString() {
+        return "Review [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", comments=" + comments + ", rating="
+                + rating + ", customer=" + customer + "]";
+    }
 
 }

@@ -5,6 +5,9 @@ import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="admin")
@@ -16,16 +19,23 @@ public class Admin extends BaseEntity
 	@Column(name="last_name", length=30, nullable = false)
 	private String lastName;
 	
-	@Column(length = 30, unique = true) // unique constraint
+	@Column(length = 30, unique = true, nullable = false) 
+	@Email
+    @Size(max = 30)
 	private String email;
 	
-	@Column(length = 20, nullable = false) // not null constraint
+	@Column(nullable = false, unique = true) // not null constraint
+	@Size(min = 8, max = 20)
+	@Pattern(regexp = "^(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.*\\d).{8,20}$")
 	private String password;
 	
-	private LocalDate dob;
-	
-	@Column(name = "phone_no", length = 14, unique = true)
+	@Column(name = "phone_no", unique = true)
+	@Pattern(regexp = "^\\+?[0-9. ()-]{7,14}$") 
+    @Size(max = 14)
 	private String phoneNo;
+	
+	@Column(nullable = false)
+	private LocalDate dob;
 	
 	//ctor
 	public Admin() {
