@@ -7,6 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -15,6 +18,10 @@ import javax.persistence.Table;
 @Table(name = "booking")
 public class Booking extends BaseEntity
 {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id ;
+	
 	@Enumerated(EnumType.STRING)
 	@Column(name="booking_status", length = 50, nullable = false)
 	private BookStatus bookStatus;
@@ -36,6 +43,14 @@ public class Booking extends BaseEntity
 		this.bookStatus = bookStatus;
 		this.bookingDate = bookingDate;
 		this.customers = customers;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public BookStatus getBookStatus() {
@@ -64,6 +79,7 @@ public class Booking extends BaseEntity
 
 	@Override
 	public String toString() {
-		return "Booking [bookStatus=" + bookStatus + ", bookingDate=" + bookingDate + ", customers=" + customers + "]";
+		return "Booking [id=" + id + ", bookStatus=" + bookStatus + ", bookingDate=" + bookingDate + ", customers="
+				+ customers + "]";
 	}
 }

@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="services")
-public class Service extends BaseEntity
+public class Services extends BaseEntity
 {	
 	@Enumerated(EnumType.STRING) // col type : varchar(20 : store enum constant names
 	@Column(length = 20)
@@ -25,12 +25,12 @@ public class Service extends BaseEntity
 	private String description;
 	
 	//ctor
-	public Service() {
+	public Services() {
 		// TODO Auto-generated constructor stub
 	}
 
 	//para-ctor
-	public Service(ServiceType type, Stylist stylist, String description) {
+	public  Services(ServiceType type, Stylist stylist, String description) {
 		super();
 		this.type = type;
 		this.stylist = stylist;

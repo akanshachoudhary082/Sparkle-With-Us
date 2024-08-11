@@ -1,9 +1,14 @@
 package com.app.entities;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -11,79 +16,69 @@ import javax.persistence.Table;
 public class Payment extends BaseEntity
 {
 
-	private Long transactionId;
+	@OneToOne
+	@JoinColumn(name = "customer_id",nullable= false)
+	private  Customer customer;
+	@OneToOne
+	@JoinColumn(name="booking_id", nullable = false)
 	private Long bookingId;
-	private Double amount;
-	private LocalDate paymnetDate;
+	
+	@Column(name="payment_date", nullable = false)
+	private LocalDateTime paymentDate;
+	
+	@Column(nullable = false)
+	private double amount;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(name="payment_mode",length = 50)
 	private PaymentMode paymentMode;
-	@Column(length = 20)
-	private PaymentStatus paymentStatus;
+	
 	
 	
 	public Payment() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Payment(Long id) {
-		super(id);
-		// TODO Auto-generated constructor stub
-	}
-	public Payment(Long transactionId, Long bookingId, Double amount, LocalDate paymnetDate, PaymentMode paymentMode,
-			PaymentStatus paymentStatus) {
-		super();
-		this.transactionId = transactionId;
-		this.bookingId = bookingId;
-		this.amount = amount;
-		this.paymnetDate = paymnetDate;
-		this.paymentMode = paymentMode;
-		this.paymentStatus = paymentStatus;
-	}
 	
-	
-	public Long getTransactionId() {
-		return transactionId;
-	}
-	public void setTransactionId(Long transactionId) {
-		this.transactionId = transactionId;
-	}
-	public Long getBookingId() {
-		return bookingId;
-	}
-	public void setBookingId(Long bookingId) {
-		this.bookingId = bookingId;
-	}
-	public Double getAmount() {
-		return amount;
-	}
-	public void setAmount(Double amount) {
-		this.amount = amount;
-	}
-	public LocalDate getPaymnetDate() {
-		return paymnetDate;
-	}
-	public void setPaymnetDate(LocalDate paymnetDate) {
-		this.paymnetDate = paymnetDate;
-	}
-	public PaymentMode getPaymentMode() {
-		return paymentMode;
-	}
-	public void setPaymentMode(PaymentMode paymentMode) {
-		this.paymentMode = paymentMode;
-	}
-	public PaymentStatus getPaymentStatus() {
-		return paymentStatus;
-	}
-	public void setPaymentStatus(PaymentStatus paymentStatus) {
-		this.paymentStatus = paymentStatus;
-	}
-	
-	@Override
-	public String toString() {
-		return "Payment [transactionId=" + transactionId + ", bookingId=" + bookingId + ", amount=" + amount
-				+ ", paymnetDate=" + paymnetDate + ", paymentMode=" + paymentMode + ", paymentStatus=" + paymentStatus
-				+ "]";
-	}
-	
+	//para-ctor
+		public Payment(Customer customer, double amount, PaymentMode paymentMode) {
+			super();
+			this.customer = customer;
+			this.amount = amount;
+			this.paymentMode = paymentMode;
+		}
+
+		//getter & setter
+		public Customer getCustomer() {
+			return customer;
+		}
+
+		public void setCustomer(Customer customer) {
+			this.customer = customer;
+		}
+
+		public double getAmount() {
+			return amount;
+		}
+
+		public void setAmount(double amount) {
+			this.amount = amount;
+		}
+
+		public PaymentMode getPaymentMode() {
+			return paymentMode;
+		}
+
+		public void setPaymentMode(PaymentMode paymentMode) {
+			this.paymentMode = paymentMode;
+		}
+
+		//toString
+		@Override
+		public String toString() {
+			return "Payment [customer=" + customer + ", amount=" + amount + ", paymentMode=" + paymentMode + "]";
+		}
+		
 	
 	
 }

@@ -49,7 +49,7 @@ public class Stylist extends BaseEntity
 	private boolean availability;
 	
 	@OneToMany(mappedBy = "stylist", cascade = CascadeType.ALL)
-    private List<Service> services;
+    private List<Services> services;
 	
 	//ctor
 	public Stylist() {
