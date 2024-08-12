@@ -55,29 +55,23 @@ public class BookingController
         return ResponseEntity.ok(response);
     }
 
-//    @PostMapping
-//    public ResponseEntity<Booking> addNewBooking(@RequestBody Booking newBooking) {
-//        Booking booking = bookingService.addNewBookingDetails(newBooking);
-//        return ResponseEntity.status(HttpStatus.CREATED).body(booking);
-//    }
-    
-//    @PostMapping("/booking")
-//    public ResponseEntity<Booking> addNewBooking(@RequestBody Booking newBooking) {
-//        Customer customer = newBooking.getCustomers();
-//        if (customer.getId() == null) {
-//            customerService.save(customer); // Save the customer first if it's new
-//        }
-//        Booking savedBooking = bookingService.save(newBooking); // Then save the booking
-//        return ResponseEntity.ok(savedBooking);
-//    }
-
-
-    @PutMapping
-    public ResponseEntity<Booking> updateBookingDetails(@RequestBody Booking booking) {
-        Booking updatedBooking = bookingService.updateBookingDetails(booking);
-        return ResponseEntity.ok(updatedBooking);
+    @PostMapping
+    public ResponseEntity<Booking> addNewBooking(@RequestBody Booking newBooking) {
+        Booking booking = bookingService.addNewBookingDetails(newBooking);
+        return ResponseEntity.status(HttpStatus.CREATED).body(booking);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Booking> updateBookingDetails(@PathVariable Long id, @RequestBody Booking booking) {
+    	booking.setId(id); // Ensure the ID is set in the review object
+    	Booking updatedBooking = bookingService.updateBookingDetails(booking);
+        if (updatedBooking != null) {
+            return ResponseEntity.ok(updatedBooking);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+    }
+    
     @GetMapping("/sorted")
     public ResponseEntity<List<Booking>> getBookingSortedByDate() {
         List<Booking> sortedBookings = bookingService.findAllByOrderByBookingDateAsc();

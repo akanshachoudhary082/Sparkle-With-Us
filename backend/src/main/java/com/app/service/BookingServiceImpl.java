@@ -11,8 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.app.entities.Booking;
+import com.app.entities.Customer;
 import com.app.exception.ResourceNotFoundException;
 import com.app.repository.BookingRepository;
+import com.app.repository.CustomerRepository;
 
 @Service
 @Transactional
@@ -21,6 +23,23 @@ public class BookingServiceImpl implements BookingService
 	@Autowired
 	private BookingRepository bookingRepository;
 
+	@Autowired
+	private CustomerRepository customerRepository;
+	
+	@Override
+	public Booking addNewBookingDetails(Booking newBooking) 
+	{
+		if(newBooking.getCustomers() == null || newBooking.getId() == null)
+		{
+			throw new IllegalArgumentException("Customer must not be null and must have an ID");
+		}
+		Long customerId = newBooking.getCustomers().getId();
+		Customer customer = customerRepository.findById(customerId)
+				.orElseThrow(() -> new ResourceNotFoundException("Customer not found with ID: " + customerId));
+		newBooking.setCustomers(customer);
+		return bookingRepository.save(newBooking);
+	}
+	
 	@Override
 	public List<Booking> getAllBookingDetails() 
 	{
@@ -38,11 +57,7 @@ public class BookingServiceImpl implements BookingService
 		return "Deleting booking datails failes : Invalid booking id";
 	}
 
-	@Override
-	public Booking addNewBookingDetails(Booking newBooking) 
-	{
-		return bookingRepository.save(newBooking);
-	}
+	
 
 	@Override
 	public Booking updateBookingDetails(Booking booking) 

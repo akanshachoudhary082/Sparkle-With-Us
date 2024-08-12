@@ -2,6 +2,7 @@ package com.app.entities;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -12,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -33,6 +35,12 @@ public class Booking extends BaseEntity
 	@JoinColumn(name = "customer_Id", nullable = false)
 	private Customer customers;
 	
+	
+
+    @OneToOne(mappedBy = "booking",cascade = CascadeType.ALL)
+    private Payment payment;
+
+   
 	public Booking() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -44,7 +52,13 @@ public class Booking extends BaseEntity
 		this.bookingDate = bookingDate;
 		this.customers = customers;
 	}
+	 public Payment getPayment() {
+	        return payment;
+	    }
 
+	    public void setPayment(Payment payment) {
+	        this.payment = payment;
+	    }
 	public Long getId() {
 		return id;
 	}
