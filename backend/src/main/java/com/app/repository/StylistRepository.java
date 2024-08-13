@@ -12,4 +12,6 @@ public interface StylistRepository extends JpaRepository<Stylist,Long>
 	List<Stylist> findBySpecialization(Specialization specialization);
 	
 	List<Stylist> findByAvailability(boolean availability);
+	
+	List<Stylist> findByEmail(String email);
 }

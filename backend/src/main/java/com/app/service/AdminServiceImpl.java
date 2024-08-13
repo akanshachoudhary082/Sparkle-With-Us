@@ -8,10 +8,10 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.app.custom_exception.ResourceNotFoundException;
 import com.app.entities.Booking;
 import com.app.entities.Customer;
 import com.app.entities.Stylist;
-import com.app.exception.ResourceNotFoundException;
 import com.app.repository.BookingRepository;
 import com.app.repository.CustomerRepository;
 import com.app.repository.StylistRepository;

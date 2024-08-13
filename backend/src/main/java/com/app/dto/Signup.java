@@ -1,35 +1,39 @@
-package com.app.entities;
+package com.app.dto;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 
-import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
+public class Signup {
 
-@Entity
-@Table(name = "secure_users")
-
-public class UserEntity extends BaseEntity {
-	@Column(length = 20)
+	@JsonProperty(access = Access.READ_ONLY) // this property only used during ser.
+	private Long id;
+	@NotBlank(message = "First Name required")
 	private String firstName;
-	@Column(length = 20)
 	private String lastName;
-	@Column(length = 30, unique = true)
+	@Email(message = "Invalid Email!!!")
 	private String email;
-	@Column(length = 300, nullable = false)
+	@JsonProperty(access = Access.WRITE_ONLY)// this property only used during de-ser.
 	private String password;
 	
-	public UserEntity() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	public UserEntity(String firstName, String lastName, String email, String password) {
+	public Signup(String firstName, String lastName,
+			String email, String password) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.password = password;
+		
+}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getFirstName() {
@@ -64,12 +68,5 @@ public class UserEntity extends BaseEntity {
 		this.password = password;
 	}
 
-	@Override
-	public String toString() {
-		return "UserEntity [firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + "]";
-	}
-
-	
-	
 	
 }
