@@ -10,19 +10,21 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "payment")
 public class Payment extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@OneToOne
+	@JoinColumn(name = "customer_id",nullable= false)
+	private  Customer customer;
 
-    @ManyToOne
+
+    @OneToOne
     @JoinColumn(name = "booking_id", nullable = false)
-    private Booking booking;
+    private Booking bookingId;
 
     @Column(name = "payment_date", nullable = false)
     private LocalDateTime paymentDate;
@@ -34,42 +36,23 @@ public class Payment extends BaseEntity {
     @Column(name = "payment_mode", length = 50)
     private PaymentMode paymentMode;
 
-    private String razorpayPaymentId;
-
-    @Column(length = 20)
-    private String status;
+  
 
     public Payment() {
         super();
     }
 
-    public Payment(Booking booking, LocalDateTime paymentDate, double amount, PaymentMode paymentMode,
-                   String razorpayPaymentId, String status) {
-        super();
-        this.booking = booking;
-        this.paymentDate = paymentDate;
-        this.amount = amount;
-        this.paymentMode = paymentMode;
-        this.razorpayPaymentId = razorpayPaymentId;
-        this.status = status;
-    }
-
+    public Payment(Customer customer, Booking bookingId, LocalDateTime paymentDate, double amount,
+			PaymentMode paymentMode) {
+		super();
+		this.customer = customer;
+		this.bookingId = bookingId;
+		this.paymentDate = paymentDate;
+		this.amount = amount;
+		this.paymentMode = paymentMode;
+	}
     // Getters and setters
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Booking getBooking() {
-        return booking;
-    }
-
-    public void setBooking(Booking booking) {
-        this.booking = booking;
-    }
+   
 
     public LocalDateTime getPaymentDate() {
         return paymentDate;
@@ -95,25 +78,27 @@ public class Payment extends BaseEntity {
         this.paymentMode = paymentMode;
     }
 
-    public String getRazorpayPaymentId() {
-        return razorpayPaymentId;
-    }
+   
 
-    public void setRazorpayPaymentId(String razorpayPaymentId) {
-        this.razorpayPaymentId = razorpayPaymentId;
-    }
+    public Customer getCustomer() {
+		return customer;
+	}
 
-    public String getStatus() {
-        return status;
-    }
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
+	public Booking getBookingId() {
+		return bookingId;
+	}
 
-    @Override
-    public String toString() {
-        return "Payment [booking=" + booking + ", paymentDate=" + paymentDate + ", amount=" + amount + ", paymentMode=" + paymentMode +
-                ", razorpayPaymentId=" + razorpayPaymentId + ", status=" + status + "]";
-    }
+	public void setBookingId(Booking bookingId) {
+		this.bookingId = bookingId;
+	}
+
+	@Override
+	public String toString() {
+		return "Payment [customer=" + customer + ", bookingId=" + bookingId + ", paymentDate=" + paymentDate
+				+ ", amount=" + amount + ", paymentMode=" + paymentMode + "]";
+	}
 }

@@ -34,12 +34,6 @@ public class Booking extends BaseEntity
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "customer_Id", nullable = false)
 	private Customer customers;
-	
-	
-
-    @OneToOne(mappedBy = "booking",cascade = CascadeType.ALL)
-    private Payment payment;
-
    
 	public Booking() {
 		super();
@@ -52,13 +46,7 @@ public class Booking extends BaseEntity
 		this.bookingDate = bookingDate;
 		this.customers = customers;
 	}
-	 public Payment getPayment() {
-	        return payment;
-	    }
-
-	    public void setPayment(Payment payment) {
-	        this.payment = payment;
-	    }
+	
 	public Long getId() {
 		return id;
 	}
