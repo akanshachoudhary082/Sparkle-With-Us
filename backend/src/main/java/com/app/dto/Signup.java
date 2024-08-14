@@ -2,9 +2,11 @@ package com.app.dto;
 
 import java.time.LocalDate;
 
+import javax.persistence.Column;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
@@ -18,6 +20,9 @@ public class Signup {
 	private String lastName;
 	@Email(message = "Invalid Email!!!")
 	private String email;
+
+	@Column(nullable = false) // not null constraint
+	@Size(min = 8, max = 20)
 	@JsonProperty(access = Access.WRITE_ONLY) // this property only used during de-ser.
 	private String password;
 	@NotBlank(message = "Address is required")

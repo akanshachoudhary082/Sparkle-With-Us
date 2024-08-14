@@ -73,10 +73,11 @@ public class SecurityConfig {
 //<<<<<<< HEAD
                 //.antMatchers("/user/signup", "/users/signin", "/v*/api-doc*/**", "/swagger-ui/**").permitAll()
 //=======
-                .antMatchers("/users/signup", "/users/signin","/users/signin",
-                        "/v*/api-doc*/**", "/swagger-ui/**", "/customer/register").permitAll()
+                .antMatchers("/users/signup", "/users/signin",
+                        "/v*/api-doc*/**", "/swagger-ui/**", "/customer/register","/stylist/register").permitAll()
 //>>>>>>> 724d2718dcc95a18faae532fab541fa3fa9a0395
                 .antMatchers(HttpMethod.OPTIONS).permitAll()
+                .antMatchers("/admin/register").permitAll()
                 .antMatchers("/logout").permitAll() // Allow access to logout endpoint without authentication
                 .antMatchers("/customer/**").hasAuthority("CUSTOMER")
                 .antMatchers("/stylist/**").hasAuthority("STYLIST")
