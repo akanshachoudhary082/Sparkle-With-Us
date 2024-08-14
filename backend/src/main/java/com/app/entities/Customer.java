@@ -39,7 +39,7 @@ public class Customer extends  BaseEntity {
 	
 	@Column(nullable = false, unique = true) // not null constraint
 	@Size(min = 8, max = 20)
-	@Pattern(regexp = "^(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.*\\d).{8,20}$")
+	//@Pattern(regexp = "^(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.*\\d).{8,20}$")
 	private String password;
 	
 	@Column(name = "phone_no", unique = true)

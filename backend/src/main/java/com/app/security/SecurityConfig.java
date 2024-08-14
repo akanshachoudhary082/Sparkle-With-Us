@@ -70,7 +70,12 @@ public class SecurityConfig {
                 .and()
                 .csrf().disable()
                 .authorizeRequests()
+<<<<<<< HEAD
                 .antMatchers("/user/signup", "/users/signin", "/v*/api-doc*/**", "/swagger-ui/**").permitAll()
+=======
+                .antMatchers("/user/signup", "/users/signin","/users/signin",
+                        "/v*/api-doc*/**", "/swagger-ui/**", "/customer/register").permitAll()
+>>>>>>> 724d2718dcc95a18faae532fab541fa3fa9a0395
                 .antMatchers(HttpMethod.OPTIONS).permitAll()
                 .antMatchers("/logout").permitAll() // Allow access to logout endpoint without authentication
                 .antMatchers("/customer/**").hasAuthority("CUSTOMER")
