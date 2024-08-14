@@ -15,18 +15,13 @@ public class Signup {
 	private String lastName;
 	@Email(message = "Invalid Email!!!")
 	private String email;
-	@JsonProperty(access = Access.WRITE_ONLY)// this property only used during de-ser.
+	@JsonProperty(access = Access.WRITE_ONLY) // this property only used during de-ser.
 	private String password;
-	
-	public Signup(String firstName, String lastName,
-			String email, String password) {
+
+	public Signup() {
 		super();
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-		this.password = password;
-		
-}
+		// TODO Auto-generated constructor stub
+	}
 
 	public Long getId() {
 		return id;
@@ -68,5 +63,4 @@ public class Signup {
 		this.password = password;
 	}
 
-	
 }

@@ -8,12 +8,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.app.entities.UserEntity;
+import com.app.repository.UserEntityRepository;
 
 
 @Service
 @Transactional
 public class CustomUserDetailsService implements UserDetailsService {
 	
+	@Autowired
+	private UserEntityRepository userRepo;
 
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {

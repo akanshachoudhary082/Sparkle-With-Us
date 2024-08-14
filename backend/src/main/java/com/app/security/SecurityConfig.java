@@ -14,26 +14,65 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+//@EnableWebSecurity
+//@Configuration
+//@EnableGlobalMethodSecurity(prePostEnabled = true)
+//public class SecurityConfig {
+//    @Autowired
+//    private PasswordEncoder enc;
+//    @Autowired
+//    private JwtAuthenticationFilter jwtFilter;
+//    @Autowired
+//    private CustomAuthenticationEntryPoint authEntry;
+//
+//    @Bean
+//    public SecurityFilterChain authorizeRequests(HttpSecurity http) throws Exception {
+//        http.cors()
+//                .and()
+//                .csrf().disable()
+//                .authorizeRequests()
+//                .antMatchers("/user/signup", "/users/signin","/users/signin",
+//                        "/v*/api-doc*/**", "/swagger-ui/**").permitAll()
+//                .antMatchers(HttpMethod.OPTIONS).permitAll()
+//                .antMatchers("/customer/**").hasAuthority("CUSTOMER")
+//                .antMatchers("/stylist/**").hasAuthority("STYLIST")
+//                .antMatchers("/admin/**").hasAuthority("ADMIN")
+//                .anyRequest().authenticated()
+//                .and()
+//                .sessionManagement()
+//                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+//                .and()
+//                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+//
+//        return http.build();
+//    }
+//
+//    @Bean
+//    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
+//        return config.getAuthenticationManager();
+//    }
+//}
+
 @EnableWebSecurity
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
     @Autowired
-    private PasswordEncoder enc;
+    private PasswordEncoder passwordEncoder;
     @Autowired
     private JwtAuthenticationFilter jwtFilter;
     @Autowired
     private CustomAuthenticationEntryPoint authEntry;
 
     @Bean
-    public SecurityFilterChain authorizeRequests(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.cors()
                 .and()
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/user/signup", "/users/signin","/users/signin",
-                        "/v*/api-doc*/**", "/swagger-ui/**").permitAll()
+                .antMatchers("/user/signup", "/users/signin", "/v*/api-doc*/**", "/swagger-ui/**").permitAll()
                 .antMatchers(HttpMethod.OPTIONS).permitAll()
+                .antMatchers("/logout").permitAll() // Allow access to logout endpoint without authentication
                 .antMatchers("/customer/**").hasAuthority("CUSTOMER")
                 .antMatchers("/stylist/**").hasAuthority("STYLIST")
                 .antMatchers("/admin/**").hasAuthority("ADMIN")
@@ -41,6 +80,9 @@ public class SecurityConfig {
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .exceptionHandling()
+                .authenticationEntryPoint(authEntry)
                 .and()
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 

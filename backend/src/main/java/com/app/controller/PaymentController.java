@@ -34,10 +34,6 @@ public class PaymentController
 	
 	
 	    
-	    @PutMapping("/{id}")
-	    public ResponseEntity<ApiResponse> updatePayment(@PathVariable Long id, @RequestBody PaymentDTO paymentDto) {
-	        ApiResponse payment = paymentService.updatePayment(id, paymentDto);
-	        return ResponseEntity.ok(payment);
-	    }
+	   
 	}
 
