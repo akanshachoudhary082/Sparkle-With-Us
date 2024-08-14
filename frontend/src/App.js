@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { Routes, Route } from 'react-router-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Header from './components/Header'; // 
@@ -13,8 +14,18 @@ import Services from './components/Services';
 
 
 function App() {
+  useEffect(() => {
+    // Perform a test GET request to verify Axios setup
+    axios.get('/test-endpoint')
+      .then(response => {
+        console.log('Test request successful:', response.data);
+      })
+      .catch(error => {
+        console.error('Test request failed:', error);
+      });
+  }, []);
   return (
-    <Router>
+    <Router> 
       <Header />
       <Routes>
         <Route path="/" element={<Home/>} />

@@ -22,7 +22,7 @@ public class Signup {
 	private String email;
 
 	@Column(nullable = false) // not null constraint
-	@Size(min = 8, max = 20)
+	//@Size(min = 8, max = 20)
 	@JsonProperty(access = Access.WRITE_ONLY) // this property only used during de-ser.
 	private String password;
 	@NotBlank(message = "Address is required")

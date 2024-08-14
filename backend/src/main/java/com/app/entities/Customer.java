@@ -37,8 +37,8 @@ public class Customer extends  BaseEntity {
     @Size(max = 30)
 	private String email;
 	
-	@Column(nullable = false) // not null constraint
-	@Size(min = 8, max = 20)
+	@Column(nullable = false,length = 250) // not null constraint
+	//@Size(min = 8, max = 20)
 	//@Pattern(regexp = "^(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.*\\d).{8,20}$")
 	private String password;
 	
