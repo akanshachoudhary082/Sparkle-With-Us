@@ -1,0 +1,72 @@
+/* General Styles */
+.services-page {
+    font-family: Arial, sans-serif;
+    background-color: rgb(72, 71, 71);
+}
+
+/* .navbar {
+    background-color: #f8f9fa;
+    padding: 10px;
+    text-align: center;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: #007BFF;
+    margin: 0 15px;
+    font-size: 1rem;
+} */
+
+/* Header Image */
+.header-image {
+    padding-top: 2%;
+    width: 80%;
+    height: auto;
+}
+
+.header-image img {
+    width: 60%;
+    height: auto;
+    padding-left: 20%;
+}
+
+/* Services Grid */
+.services-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    color: aliceblue;
+}
+
+.service-item {
+    flex: 1 1 calc(25% - 40px); 
+    box-sizing: border-box;
+    transition: transform 0.3s ease-in-out;
+    text-align: center;
+}
+
+.service-item:hover {
+    transform: scale(1.05); 
+}
+
+.service-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.service-info {
+    text-align: center;
+}
+
+.service-info p {
+    margin: 5px 0;
+}
+
+.service-price {
+    color: pink;
+    font-weight: bold;
+}

@@ -14,10 +14,10 @@ import com.app.repository.UserEntityRepository;
 @Service
 @Transactional
 public class CustomUserDetailsService implements UserDetailsService {
-<<<<<<< HEAD
+//<<<<<<< HEAD
 	
-=======
->>>>>>> 724d2718dcc95a18faae532fab541fa3fa9a0395
+//=======
+//>>>>>>> 724d2718dcc95a18faae532fab541fa3fa9a0395
 	@Autowired
 	private UserEntityRepository userRepo;
 

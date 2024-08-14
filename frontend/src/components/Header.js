@@ -1,25 +1,26 @@
 import React from 'react';
-import "./Header.css"
-import { Navbar, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+// import './Style.css';
+import './css/Style.css';
+
 
 const Header = () => {
   return (
-    <Navbar bg="dark" variant="dark" expand="lg">
-      <Navbar.Brand as={Link} to="/">Sparkle With Us</Navbar.Brand>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="mr-auto">
-          <Nav.Link as={Link} to="/admin-dashboard">Dashboard</Nav.Link>
-          <Nav.Link as={Link} to="/customer-list">Customers</Nav.Link>
-          <Nav.Link as={Link} to="/payment-list">Payments</Nav.Link>
-          <Nav.Link as={Link} to="/booking-list">Bookings</Nav.Link>
-          <Nav.Link as={Link} to="/stylist-list">Stylists</Nav.Link>
-          <Nav.Link as={Link} to="/review-list">Reviews</Nav.Link>
-        </Nav>
-      </Navbar.Collapse>
-    </Navbar>
+    <header className="header">
+      <img src={require('../images/images.png')} alt="Salon Logo" className="logo" />
+      <nav className="navbar">
+        <ul>
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/aboutus">About Us</Link></li>
+          <li><Link to="/services">Services</Link></li>
+          <li><Link to="/contactus">Contact Us</Link></li>
+          {/* <li><Link to="/admin">Admin</Link></li> */}
+          {/* <li><Link to="/signup">Sign Up</Link></li> */}
+          <li><Link to="/login">Login</Link></li>
+        </ul>
+      </nav>
+    </header>
   );
-};
+}
 
 export default Header;

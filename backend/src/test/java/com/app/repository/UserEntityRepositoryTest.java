@@ -35,11 +35,11 @@ class UserEntityRepositoryTest {
     void testAddUsers() {
         // Create a list of UserEntity instances without roles
         List<UserEntity> users = List.of(
-            new UserEntity("John", "Doe", "john.doe@example.com", enc.encode("Jane@Dae111")),
-            new UserEntity("Jane", "Doe", "jane.doe@example.com", enc.encode("Jone#Smith222")),
+            new UserEntity("Jane", "Doe", "jane.doe@gmail.com", enc.encode("Jane@Dae111")),
+            new UserEntity("John", "Smith", "john.smith@gmail.com", enc.encode("Jone#Smith222")),
             new UserEntity("Bonoy", "Smith", "bonoy@gmail.com", enc.encode("Stylist#Pwd2"))
         );
-
+        
         // Save all users and check the result
         List<UserEntity> savedUsers = userRepo.saveAll(users);
         assertEquals(3, savedUsers.size(), "The number of saved users should be 3");

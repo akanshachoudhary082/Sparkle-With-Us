@@ -152,15 +152,15 @@ public class JwtUtils {
         key = Keys.hmacShaKeyFor(jwtSecret.getBytes());
     }
 
-<<<<<<< HEAD
-    public String generateJwtToken(Authentication authentication) {
-        log.info("Generating JWT token for: {}", authentication.getName());
-        CustomUserDetails userPrincipal = (CustomUserDetails) authentication.getPrincipal();
-=======
+//<<<<<<< HEAD
+//    public String generateJwtToken(Authentication authentication) {
+//        log.info("Generating JWT token for: {}", authentication.getName());
+//        CustomUserDetails userPrincipal = (CustomUserDetails) authentication.getPrincipal();
+//=======
 	public String generateJwtToken(Authentication authentication) {
 		//log.info("generate jwt token " + authentication);
 		CustomUserDetails userPrincipal = (CustomUserDetails) authentication.getPrincipal();
->>>>>>> 724d2718dcc95a18faae532fab541fa3fa9a0395
+//>>>>>>> 724d2718dcc95a18faae532fab541fa3fa9a0395
 
         return Jwts.builder() 
                 .setSubject(userPrincipal.getUsername()) 

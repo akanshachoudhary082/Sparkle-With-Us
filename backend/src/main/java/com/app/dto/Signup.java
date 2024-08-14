@@ -1,7 +1,10 @@
 package com.app.dto;
 
+import java.time.LocalDate;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Past;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
@@ -17,7 +20,15 @@ public class Signup {
 	private String email;
 	@JsonProperty(access = Access.WRITE_ONLY) // this property only used during de-ser.
 	private String password;
+	@NotBlank(message = "Address is required")
+    private String address;
 
+    @NotBlank(message = "Gender is required")
+    private String gender;
+
+    @Past(message = "Date of birth must be in the past")
+    private LocalDate dob;
+    
 	public Signup() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -61,6 +72,30 @@ public class Signup {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public LocalDate getDob() {
+		return dob;
+	}
+
+	public void setDob(LocalDate dob) {
+		this.dob = dob;
 	}
 
 }

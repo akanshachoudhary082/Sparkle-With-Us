@@ -1,0 +1,77 @@
+/* AboutUs.css */
+
+.about-us {
+    text-align: center;
+    background-color: rgb(49, 47, 47);
+  }
+  
+  .about-us-header {
+    position: relative;
+    text-align: center;
+    color: rgb(7, 7, 7);
+  }
+  
+  .header-image {
+    padding-top: 2%;
+    width: 80%;
+    height: auto;
+  }
+  
+  .header-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3em;
+    font-weight: bold;
+  }
+  
+  .about-us-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px 20px;
+  }
+  
+  .about-us-left {
+    flex: 1;
+    font-family:cursive;
+    text-align: center;
+    padding-left: 20px;
+    text-align: left;
+    color: aliceblue;
+  }
+  
+  .side-image {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+  }
+  
+  .about-us-right {
+    flex: 1;
+    font-family:cursive;
+    text-align: center;
+    padding-left: 20px;
+    text-align: left;
+    color: aliceblue;
+  }
+  
+  .about-us-heading {
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+  
+  .services-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .services-list li {
+    font-size: 1.2em;
+    width: 50%; /* Each item takes up half the width */
+    margin-bottom: 10px;
+  }
+  

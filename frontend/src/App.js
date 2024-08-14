@@ -1,27 +1,32 @@
-import logo from './logo.svg';
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import Header from './components/Header'; // 
 import Footer from './components/Footer';
 import Home from './components/Home';
 import AboutUs from './components/AboutUs';
 import ContactUs from './components/ContactUs';
+import Login from './components/Login';
+import Register from './components/Register';
 import './App.css';
+import Services from './components/Services';
 
 
 function App() {
   return (
-    <>
+    <Router>
       <Header />
       <Routes>
-      <div className="App">
-          <Route path="/" exact component={Home} />
-          <Route path="/about" component={AboutUs} />
-          <Route path="/contact" component={ContactUs} />
-      </div>
+        <Route path="/" element={<Home/>} />
+        <Route path="/aboutus" element={<AboutUs />} />
+        <Route path="/contactus" element={<ContactUs />} />
+        <Route path="/services" element={<Services />} />
+        <Route path="/login" element={<Login/>} />
+        <Route path="/register" element={<Register />} />
+
       </Routes>
-      <Footer/>
-    </>
+      <Footer />
+    </Router>
   );
 }
 
