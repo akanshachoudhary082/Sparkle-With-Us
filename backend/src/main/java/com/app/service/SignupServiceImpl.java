@@ -38,7 +38,7 @@ public class SignupServiceImpl implements SignupService {
         // dto --> entity
         Customer customer = mapper.map(reqDTO, Customer.class);
         var user = customerDao.findByEmail(reqDTO.getEmail());
-        if ( user!=null)
+        if ( user.size() >= 1)
             throw new ApiException("Email already exists !!!");
         
         customer.setPassword(encoder.encode(customer.getPassword())); // pwd : encrypted using SHA

@@ -40,7 +40,7 @@ public class JwtUtils {
 	}
 
 	public String generateJwtToken(Authentication authentication) {
-		log.info("generate jwt token " + authentication);
+		//log.info("generate jwt token " + authentication);
 		CustomUserDetails userPrincipal = (CustomUserDetails) authentication.getPrincipal();
 
 		return Jwts.builder() 

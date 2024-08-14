@@ -32,7 +32,7 @@ public class SecurityConfig {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/user/signup", "/users/signin","/users/signin",
-                        "/v*/api-doc*/**", "/swagger-ui/**").permitAll()
+                        "/v*/api-doc*/**", "/swagger-ui/**", "/customer/register").permitAll()
                 .antMatchers(HttpMethod.OPTIONS).permitAll()
                 .antMatchers("/customer/**").hasAuthority("CUSTOMER")
                 .antMatchers("/stylist/**").hasAuthority("STYLIST")
