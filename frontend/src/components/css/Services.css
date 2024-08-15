@@ -70,3 +70,12 @@
     color: pink;
     font-weight: bold;
 }
+ .service-item {
+    background:black;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: calc(33.333% - 20px); /* Adjust for responsive design */
+    margin-bottom: 20px;
+    cursor: pointer; /* Makes the service item appear clickable */
+} 
