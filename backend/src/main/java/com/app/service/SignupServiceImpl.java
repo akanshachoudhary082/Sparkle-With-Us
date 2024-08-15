@@ -12,9 +12,12 @@ import com.app.dto.Signup;
 import com.app.entities.Admin;
 import com.app.entities.Customer;
 import com.app.entities.Stylist;
+import com.app.entities.UserEntity;
+import com.app.repository.AddressRepository;
 import com.app.repository.AdminRepository;
 import com.app.repository.CustomerRepository;
 import com.app.repository.StylistRepository;
+import com.app.repository.UserEntityRepository;
 
 @Service
 @Transactional
@@ -23,9 +26,13 @@ public class SignupServiceImpl implements SignupService {
     @Autowired
     private CustomerRepository customerDao;
     @Autowired
+    private AddressRepository addressRepository;
+    @Autowired
     private StylistRepository stylistDao;
     @Autowired
     private AdminRepository adminDao;
+    @Autowired
+    private UserEntityRepository userEntityRepository;
     // dep
     @Autowired
     private ModelMapper mapper;
@@ -34,16 +41,18 @@ public class SignupServiceImpl implements SignupService {
     private PasswordEncoder encoder;
 
     @Override
-    public Signup customerRegistration(Signup reqDTO) throws Exception {
+    public Signup userRegistration(Signup reqDTO) throws Exception {
         // dto --> entity
-        Customer customer = mapper.map(reqDTO, Customer.class);
-        var user = customerDao.findByEmail(reqDTO.getEmail());
-        if ( user.size() >= 1)
+        UserEntity user = mapper.map(reqDTO, UserEntity.class);
+        var persistUser = userEntityRepository.findByEmail(reqDTO.getEmail());
+        if ( !persistUser.isEmpty())
             throw new ApiException("Email already exists !!!");
         
-        customer.setPassword(encoder.encode(customer.getPassword())); // pwd : encrypted using SHA
-        Customer savedCustomer = customerDao.save(customer);
-        return mapper.map(savedCustomer, Signup.class);
+            user.setPassword(encoder.encode(reqDTO.getPassword())); // pwd : encrypted using SHA
+            var persistAddress = addressRepository.save(user.getAddress());
+            user.setAddress(persistAddress);
+            UserEntity Saveduser = userEntityRepository.save(user);
+        return mapper.map(Saveduser, Signup.class);
     }
 
     @Override

@@ -30,9 +30,9 @@ public class SignInSignupController {
 	@Autowired
 	private JwtUtils jwtUtils;
 
-	@PostMapping("/customer/register")
-	public ResponseEntity<Signup> customerRegistration(@RequestBody Signup reqDTO) throws Exception {
-		Signup response = signupService.customerRegistration(reqDTO);
+	@PostMapping("/register")
+	public ResponseEntity<Signup> registerUser(@RequestBody Signup reqDTO) throws Exception {
+		Signup response = signupService.userRegistration(reqDTO);
 		return new ResponseEntity<>(response, HttpStatus.CREATED);
 	}
 

@@ -8,6 +8,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
+import com.app.entities.Address;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
@@ -25,14 +26,16 @@ public class Signup {
 	//@Size(min = 8, max = 20)
 	@JsonProperty(access = Access.WRITE_ONLY) // this property only used during de-ser.
 	private String password;
-	@NotBlank(message = "Address is required")
-    private String address;
 
     @NotBlank(message = "Gender is required")
     private String gender;
 
     @Past(message = "Date of birth must be in the past")
     private LocalDate dob;
+
+	private String phoneNo;
+
+	private Address address;
     
 	public Signup() {
 		super();
@@ -79,11 +82,11 @@ public class Signup {
 		this.password = password;
 	}
 
-	public String getAddress() {
+	public Address getAddress() {
 		return address;
 	}
 
-	public void setAddress(String address) {
+	public void setAddress(Address address) {
 		this.address = address;
 	}
 
@@ -101,6 +104,14 @@ public class Signup {
 
 	public void setDob(LocalDate dob) {
 		this.dob = dob;
+	}
+
+	public String getPhoneNo() {
+		return phoneNo;
+	}
+
+	public void setPhoneNo(String phoneNo) {
+		this.phoneNo = phoneNo;
 	}
 
 }

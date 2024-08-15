@@ -74,7 +74,7 @@ public class SecurityConfig {
                 //.antMatchers("/user/signup", "/users/signin", "/v*/api-doc*/**", "/swagger-ui/**").permitAll()
 //=======
                 .antMatchers("/users/signup", "/users/signin",
-                        "/v*/api-doc*/**", "/swagger-ui/**", "/customer/register","/stylist/register","/signin").permitAll()
+                        "/v*/api-doc*/**", "/swagger-ui/**", "/register","/stylist/register","/signin").permitAll()
 //>>>>>>> 724d2718dcc95a18faae532fab541fa3fa9a0395
                 .antMatchers(HttpMethod.OPTIONS).permitAll()
                 .antMatchers("/admin/register").permitAll()
