@@ -11,7 +11,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import './App.css';
 import Services from './components/Services';
-
+import Booking from './components/Booking'; // Import Booking
 
 function App() {
   useEffect(() => {
@@ -32,6 +32,7 @@ function App() {
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/contactus" element={<ContactUs />} />
         <Route path="/services" element={<Services />} />
+        <Route path="/booking" element={<Booking />} />
         <Route path="/login" element={<Login/>} />
         <Route path="/register" element={<Register />} />
 
