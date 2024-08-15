@@ -149,7 +149,7 @@ const Services = () => {
     }, []);
 
     // Function to navigate to booking page
-    const goToBookingPage = (serviceId) => {
+    const handleBooking = (serviceId) => {
         navigate(`/booking/${serviceId}`);
     };
 
@@ -166,7 +166,7 @@ const Services = () => {
                     <div 
                         key={service.id} 
                         className="service-item"
-                        onClick={() => goToBookingPage(service.id)}
+                        onClick={() => handleBooking(service.id)}
                     >
                         <img 
                             src={service.src} 
