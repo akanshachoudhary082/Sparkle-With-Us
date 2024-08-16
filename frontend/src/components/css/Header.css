@@ -1,0 +1,66 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #333; /* Adjust as needed */
+    color: #fff; /* Adjust as needed */
+  }
+  
+  .logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .logo h1 {
+    font-size: 36px; /* Adjust as needed */
+    margin: 0;
+    /* font-family: 'Bungee Tint', cursive; Use the font for "Sparkle" */
+  }
+  
+  /* .glitter-text {
+    font-size: 48px; 
+    font-weight: bold;
+    color: #d45f5f; 
+    background: linear-gradient(45deg, #ff6b6b, #d02382);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+   } */ 
+
+  .glitter-text {
+    font-weight: bold; /* Bold 'S' */
+    color: #d45f5f; /* Glittery color */
+    position: relative;
+    display: inline-block;
+    text-shadow: 0 0 5px #fff, 0 0 10px #a09c8b, 0 0 15px #8e8150, 0 0 20px #d5cfb5, 0 0 25px #ffcc00, 0 0 30px #ffcc00, 0 0 35px #ffcc00;
+  }
+  
+  .logo h2 {
+    font-size: 18px; /* Adjust as needed */
+    margin: 0;
+    /* font-family: 'Dancing Script', cursive; Use a cursive font for "With Us" */
+    color: #f2f2f2; /* Adjust color as needed */
+  }
+  
+  .navbar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+  }
+  
+  .navbar ul li {
+    margin: 0 10px;
+  }
+  
+  .navbar ul li a {
+    color: #0d0d0d;
+    text-decoration: none;
+    font-size: 16px; /* Adjust as needed */
+  }
+  
+  .navbar ul li a:hover {
+    text-decoration: underline;
+  }
+  

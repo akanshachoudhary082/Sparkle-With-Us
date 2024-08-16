@@ -112,99 +112,131 @@
 // export default Booking;
 
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 import './css/Booking.css';
 
 const Booking = () => {
-    const [serviceId, setServiceId] = useState(null);
-    const [bookingDate, setBookingDate] = useState('');
-    const [availableSlots, setAvailableSlots] = useState([]);
-    const [selectedSlot, setSelectedSlot] = useState('');
+    const { serviceId } = useParams(); // Get serviceId from URL
+    const [selectedTimeSlot, setSelectedTimeSlot] = useState('');
+    const [startDateTime, setStartDateTime] = useState('');
+    const [endDateTime, setEndDateTime] = useState('');
+    const [stylistId, setStylistId] = useState('');
+    const [timeSlots, setTimeSlots] = useState([]);
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
 
-    useEffect(() => {
-        if (serviceId && bookingDate) {
-            axios.get(`http://localhost:8080/timeslots/available`, {
-                params: {
-                    serviceId,
-                    date: bookingDate
-                }
-            })
+    const fetchTimeSlots = () => {
+        if (!startDateTime || !endDateTime || !stylistId) {
+            setError('Please provide all required details.');
+            return;
+        }
+
+        const requestData = {
+            serviceId,
+            startDateTime,
+            endDateTime,
+            stylistId
+        };
+
+        axios.post('http://localhost:8080/timeslots/available', requestData)
             .then(response => {
-                setAvailableSlots(response.data);
+                console.log('Time slots fetched:', response.data);
+                setTimeSlots(response.data);
+                setError('');
             })
             .catch(error => {
-                setError('Error fetching available slots.');
-                console.error(error);
+                setError('Error fetching time slots.');
+                console.error('Error fetching time slots:', error.response?.data || error.message);
             });
+    };
+
+    const handleBooking = () => {
+        if (!selectedTimeSlot || !startDateTime || !endDateTime || !stylistId) {
+            setError('Please complete all fields.');
+            return;
         }
-    }, [serviceId, bookingDate]);
 
-    const handleBookingChange = (e) => {
-        setServiceId(e.target.value);
-    };
-
-    const handleDateChange = (e) => {
-        setBookingDate(e.target.value);
-    };
-
-    const handleSlotChange = (e) => {
-        setSelectedSlot(e.target.value);
-    };
-
-    const handleSubmit = () => {
-        // Submit booking with selected slot
-        axios.post('http://localhost:8080/booking', {
+        const bookingData = {
             serviceId,
-            bookingDate,
-            selectedSlot
-        })
-        .then(response => {
-            setSuccess('Booking confirmed successfully!');
-            setError('');
-        })
-        .catch(error => {
-            setError('Error processing your booking.');
-            setSuccess('');
-        });
+            timeSlotId: selectedTimeSlot,
+            startDateTime,
+            endDateTime,
+            stylistId
+        };
+
+        axios.post('http://localhost:8080/booking', bookingData)
+            .then(response => {
+                setSuccess('Booking confirmed successfully!');
+                setError('');
+            })
+            .catch(error => {
+                setError('There was an error processing your booking.');
+                setSuccess('');
+                console.error('Error processing booking:', error.response?.data || error.message);
+            });
     };
 
     return (
-        <div className="booking-page">
-            <h1>Book Your Appointment</h1>
+        <div className="booking-form">
+            <h2>Book a Service</h2>
 
-            <div className="booking-form">
-                <label>
-                    Service ID:
-                    <input
-                        type="text"
-                        value={serviceId}
-                        onChange={handleBookingChange}
-                    />
-                </label>
-                <label>
-                    Booking Date:
-                    <input
-                        type="date"
-                        value={bookingDate}
-                        onChange={handleDateChange}
-                    />
-                </label>
+            <div>
+                <label htmlFor="startDateTime">Start DateTime:</label>
+                <input
+                    type="datetime-local"
+                    id="startDateTime"
+                    value={startDateTime}
+                    onChange={(e) => setStartDateTime(e.target.value)}
+                />
+            </div>
 
-                <label>
-                    Time Slot:
-                    <select value={selectedSlot} onChange={handleSlotChange}>
-                        <option value="">Select a slot</option>
-                        {availableSlots.map((slot, index) => (
-                            <option key={index} value={slot.time}>{slot.time}</option>
+            <div>
+                <label htmlFor="endDateTime">End DateTime:</label>
+                <input
+                    type="datetime-local"
+                    id="endDateTime"
+                    value={endDateTime}
+                    onChange={(e) => setEndDateTime(e.target.value)}
+                />
+            </div>
+
+            <div>
+                <label htmlFor="stylist">Stylist:</label>
+                <select
+                    id="stylist"
+                    value={stylistId}
+                    onChange={(e) => setStylistId(e.target.value)}
+                >
+                    <option value="">Select a stylist</option>
+                    {/* Replace with real stylist options */}
+                    <option value="1">Stylist 1</option>
+                    <option value="2">Stylist 2</option>
+                </select>
+            </div>
+
+            <button onClick={fetchTimeSlots}>Fetch Available Time Slots</button>
+
+            {timeSlots.length > 0 && (
+                <div>
+                    <label htmlFor="timeSlot">Available Time Slots:</label>
+                    <select
+                        id="timeSlot"
+                        value={selectedTimeSlot}
+                        onChange={(e) => setSelectedTimeSlot(e.target.value)}
+                    >
+                        <option value="">Select a time slot</option>
+                        {timeSlots.map(slot => (
+                            <option key={slot.id} value={slot.id}>
+                                {slot.startDateTime} - {slot.endDateTime}
+                            </option>
                         ))}
                     </select>
-                </label>
+                </div>
+            )}
 
-                <button onClick={handleSubmit}>Book Now</button>
-            </div>
+            <button onClick={handleBooking}>Book Now</button>
 
             {error && <p className="error-message">{error}</p>}
             {success && <p className="success-message">{success}</p>}
