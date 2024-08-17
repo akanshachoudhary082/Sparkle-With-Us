@@ -107,6 +107,9 @@
 
 // export default Login;
 
+
+
+// export default Login;
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -122,37 +125,54 @@ const Login = () => {
     e.preventDefault();
     let loginUrl = '';
 
+    // Determine the login URL based on user type
     switch (userType) {
       case 'admin':
         loginUrl = 'http://localhost:8080/admin/login';
         break;
       case 'stylist':
-        loginUrl = 'http://localhost:8080/stylist/login';
+        loginUrl = 'http://localhost:8080/stylists/login';
         break;
       default:
         loginUrl = 'http://localhost:8080/customers/login';
     }
 
-    axios.post(loginUrl, { email, password }, { headers: { 'Content-Type': 'application/json' } })
-      .then(response => {
-        console.log('Login successful:', response.data);
-        localStorage.setItem('token', response.data.token);
+    // Make POST request to backend
+    axios.post(loginUrl, {
+      email: email,
+      password: password
+    }, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => {
+      // Handle successful login response
+      console.log('Login successful:', response.data);
+      // Store token or other relevant data
+      localStorage.setItem('token', response.data.token); // Adjust based on actual response
 
-        switch (userType) {
-          case 'admin':
-            navigate('/admindashboard');
-            break;
-          case 'stylist':
-            navigate('/stylist');
-            break;
-          default:
-            navigate('/customerdashboard');
-        }
-      })
-      .catch(error => {
-        console.error('Login failed:', error.response?.data || error.message);
-        alert('Login failed! Please check your credentials and try again.');
-      });
+
+      setEmail('');
+      setPassword('');
+
+      // Redirect based on user type
+      switch (userType) {
+        case 'admin':
+          navigate('/admin');  // Redirect to the admin dashboard
+          break;
+        case 'stylist':
+          navigate('/stylists');  // Redirect to the stylist dashboard
+          break;
+        default:
+          navigate('/services');  // Redirect to the customer dashboard
+      }
+    })
+    .catch(error => {
+      // Handle login error
+      console.error('Login failed:', error.response?.data || error.message);
+      alert('Login failed! Please check your credentials and try again.');
+    });
   };
 
   const handleRegister = () => {

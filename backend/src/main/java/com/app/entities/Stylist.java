@@ -34,13 +34,12 @@ public class Stylist extends BaseEntity
 	@Pattern(regexp = "^(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.*\\d).{8,20}$")
 	private String password;
 	
-	private LocalDate dob;
-	
 	@Column(name = "phone_no", unique = true)
 	@Pattern(regexp = "^\\+?[0-9. ()-]{7,14}$") 
     @Size(max = 14)
 	private String phoneNo;
 	
+	private LocalDate dob;
 	
 	@Enumerated(EnumType.STRING) // col type : varchar(20 : store enum constant names
 	@Column(length = 20)
@@ -57,91 +56,91 @@ public class Stylist extends BaseEntity
 	}
 	
 	//para-ctor
-		public Stylist(String firstName, String lastName, String email, String password, LocalDate dob,
-				String phoneNo, Specialization specialization, boolean availability) {
-			super();
-			this.firstName = firstName;
-			this.lastName = lastName;
-			this.email = email;
-			this.password = password;
-			this.dob = dob;
-			this.phoneNo = phoneNo;
-			this.specialization = specialization;
-			this.availability = availability;
-		}
+	public Stylist(String firstName, String lastName, String email, String password, LocalDate dob,
+			String phoneNo, Specialization specialization, boolean availability) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.password = password;
+		this.dob = dob;
+		this.phoneNo = phoneNo;
+		this.specialization = specialization;
+		this.availability = availability;
+	}
 	
 
-		//getter & setter
-		public String getFirstName() {
-			return firstName;
-		}
+	//getter & setter
+	public String getFirstName() {
+		return firstName;
+	}
 
-		public void setFirstName(String firstName) {
-			this.firstName = firstName;
-		}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
 
-		public String getLastName() {
-			return lastName;
-		}
+	public String getLastName() {
+		return lastName;
+	}
 
-		public void setLastName(String lastName) {
-			this.lastName = lastName;
-		}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 
-		public String getEmail() {
-			return email;
-		}
+	public String getEmail() {
+		return email;
+	}
 
-		public void setEmail(String email) {
-			this.email = email;
-		}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-		public String getPassword() {
-			return password;
-		}
+	public String getPassword() {
+		return password;
+	}
 
-		public void setPassword(String password) {
-			this.password = password;
-		}
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
-		public LocalDate getDob() {
-			return dob;
-		}
+	public LocalDate getDob() {
+		return dob;
+	}
 
-		public void setDob(LocalDate dob) {
-			this.dob = dob;
-		}
+	public void setDob(LocalDate dob) {
+		this.dob = dob;
+	}
 
-		public String getPhoneNo() {
-			return phoneNo;
-		}
+	public String getPhoneNo() {
+		return phoneNo;
+	}
 
-		public void setPhoneNo(String phoneNo) {
-			this.phoneNo = phoneNo;
-		}
+	public void setPhoneNo(String phoneNo) {
+		this.phoneNo = phoneNo;
+	}
 
-		public Specialization getSpecialization() {
-			return specialization;
-		}
+	public Specialization getSpecialization() {
+		return specialization;
+	}
 
-		public void setSpecialization(Specialization specialization) {
-			this.specialization = specialization;
-		}
+	public void setSpecialization(Specialization specialization) {
+		this.specialization = specialization;
+	}
 
-		public boolean isAvailability() {
-			return availability;
-		}
+	public boolean isAvailability() {
+		return availability;
+	}
 
-		public void setAvailability(boolean availability) {
-			this.availability = availability;
-		}
-		
-		//toString
-		@Override
-		public String toString() {
-			return "Stylist [sfirstName=" + firstName + ", lastName=" + lastName + ", email="
-					+ email + ", password=" + password + ", dob=" + dob + ", phoneNo=" + phoneNo + ", specialization="
-					+ specialization + ", availability=" + availability + "]";
-		}
+	public void setAvailability(boolean availability) {
+		this.availability = availability;
+	}
+	
+	//toString
+	@Override
+	public String toString() {
+		return "Stylist [sfirstName=" + firstName + ", lastName=" + lastName + ", email="
+				+ email + ", password=" + password + ", dob=" + dob + ", phoneNo=" + phoneNo + ", specialization="
+				+ specialization + ", availability=" + availability + "]";
+	}
 
 }

@@ -11,9 +11,12 @@ import Login from './components/Login';
 import Register from './components/Register';
 import Services from './components/Services';
 import Booking from './components/Booking';
-import CustomerDashboard from './components/CustomerDashboard';
-import AdminDashboard from './components/AdminDashboard';
+import Customer from './components/Customer';
+import Admin from './components/Admin';
+import Stylist from './components/Stylist';
 import './App.css';
+
+
 
 function App() {
   useEffect(() => {
@@ -37,8 +40,9 @@ function App() {
         <Route path="/booking/:serviceId"  element={<Booking />} />
         <Route path="/login" element={<Login/>} />
         <Route path="/register" element={<Register />} />
-        <Route path="/customerdashboard" element={<CustomerDashboard />} />
-        <Route path="/admindashboard" element={<AdminDashboard />} />
+        <Route path="/customer" element={<Customer/>} />
+        <Route path="/admin" element={<Admin />} />
+        <Route path="/stylist" element={<Stylist />} />
       
       </Routes>
       <Footer />

@@ -21,5 +21,6 @@ public interface StylistService
 	
 	Stylist addNewStylist(Stylist stylist);
 	
+	Stylist loginStylist(String email, String password);
 	
 }

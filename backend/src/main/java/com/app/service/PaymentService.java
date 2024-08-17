@@ -6,5 +6,4 @@ import com.app.dto.PaymentDTO;
 public interface PaymentService 
 {
 	ApiResponse addNewPayment(PaymentDTO newPament);
-	
 }

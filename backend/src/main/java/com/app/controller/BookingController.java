@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,11 +15,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.app.dto.ApiResponse;
+import com.app.dto.BookingDTO;
 import com.app.entities.Booking;
-import com.app.entities.Customer;
 import com.app.service.BookingService;
 import com.app.service.CustomerService;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/booking")
 public class BookingController 
@@ -61,6 +64,14 @@ public class BookingController
         return ResponseEntity.status(HttpStatus.CREATED).body(booking);
     }
 
+//    @PostMapping
+//	public ApiResponse addNewBooking(@RequestBody BookingDTO newBooking)
+//	{
+//		System.out.println("in add booking "+ newBooking);
+//		return bookingService.addNewBookingDetails(newBooking);
+//	}
+
+
     @PutMapping("/{id}")
     public ResponseEntity<Booking> updateBookingDetails(@PathVariable Long id, @RequestBody Booking booking) {
     	booking.setId(id); // Ensure the ID is set in the review object
@@ -71,8 +82,8 @@ public class BookingController
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
     }
-    
-    @GetMapping("/sorted")
+
+    @GetMapping("/booking/sorted")
     public ResponseEntity<List<Booking>> getBookingSortedByDate() {
         List<Booking> sortedBookings = bookingService.findAllByOrderByBookingDateAsc();
         return ResponseEntity.ok(sortedBookings);

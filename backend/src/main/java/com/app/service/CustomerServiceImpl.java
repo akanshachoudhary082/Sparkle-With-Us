@@ -10,8 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.app.custom_exception.ResourceNotFoundException;
 import com.app.entities.Customer;
+import com.app.exception.ResourceNotFoundException;
 import com.app.repository.CustomerRepository;
 
 @Service
@@ -38,9 +38,9 @@ public class CustomerServiceImpl implements CustomerService
 	}
 
 	@Override
-	public Customer addCustomerDetails(Customer newCustomer) 
+	public Customer addCustomerDetails(Customer nweCustomer) 
 	{
-		return customerRepository.save(newCustomer);
+		return customerRepository.save(nweCustomer);
 	}
 	
 	@Override
@@ -59,7 +59,7 @@ public class CustomerServiceImpl implements CustomerService
 	{
 		return customerRepository.save(customer);
 	}
-
+	
 	@Override
     public List<Customer> getAllCustomersSortedByName() {
         Comparator<Customer> byFirstName = new Comparator<Customer>() {
@@ -73,5 +73,12 @@ public class CustomerServiceImpl implements CustomerService
             .sorted(byFirstName)
             .collect(Collectors.toList());
     }
+
+	@Override
+	public Customer loginCustomer(String email, String password) {
+		Customer customer = ((Optional<Customer>) customerRepository.findByEmailAndPassword(email, password))
+				.orElseThrow(() -> new IllegalArgumentException("Invalid credentials."));
+		return customer;
+	}
 
 }

@@ -17,4 +17,7 @@ public interface CustomerService
 	Customer updateCustomerDetails(Customer customer);
 	
 	List<Customer> getAllCustomersSortedByName();
+	
+	Customer loginCustomer(String email, String password);
+	
 }

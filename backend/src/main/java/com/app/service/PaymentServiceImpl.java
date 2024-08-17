@@ -5,12 +5,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.app.custom_exception.ResourceNotFoundException;
 import com.app.dto.ApiResponse;
 import com.app.dto.PaymentDTO;
 import com.app.entities.Booking;
 import com.app.entities.Customer;
 import com.app.entities.Payment;
+import com.app.exception.ResourceNotFoundException;
 import com.app.repository.BookingRepository;
 import com.app.repository.CustomerRepository;
 import com.app.repository.PaymentRepository;
@@ -51,10 +51,8 @@ public class PaymentServiceImpl implements PaymentService
 	    // Save the payment
 	    Payment savedPayment = paymentRepository.save(payment);
 
-	    return new ApiResponse("SUCCESS,Paayment Added successfully....Thank you!!");
-
+	    return new ApiResponse("Payment Added successfully... Thank you!!");
 	}
 
-	
-	
+
 }

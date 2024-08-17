@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,14 +13,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.app.entities.Login;
 import com.app.entities.Specialization;
 import com.app.entities.Stylist;
 import com.app.service.StylistService;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@RequestMapping("/stylist")
+@RequestMapping("/stylists")
 public class StylistController 
 {
 	@Autowired
@@ -41,14 +45,20 @@ public class StylistController
         List<Stylist> stylists = stylistService.getAllStylist();
         return ResponseEntity.ok(stylists);
     }
+//	
+//	@GetMapping("/available")
+//    public ResponseEntity<List<Stylist>> getAvailableStylists() 
+//	{
+//        List<Stylist> stylists = stylistService.getAllAvailableStylists();
+//        return ResponseEntity.ok(stylists);
+//    }
+//	
 	
-	@GetMapping("/available")
-    public ResponseEntity<List<Stylist>> getAvailableStylists() 
-	{
-        List<Stylist> stylists = stylistService.getAllAvailableStylists();
-        return ResponseEntity.ok(stylists);
-    }
-	
+	@GetMapping("/stylists/available")
+	public ResponseEntity<List<Stylist>> getAvailableStylists() {
+	    List<Stylist> stylists = stylistService.getAllAvailableStylists();
+	    return ResponseEntity.ok(stylists);
+	}
 	@GetMapping("/id/{stylistId}")
     public ResponseEntity<Stylist> getStylistDetails(@PathVariable("stylistId") Long stylistId) 
 	{
@@ -73,4 +83,16 @@ public class StylistController
         Stylist newStylist = stylistService.addNewStylist(stylist);
         return ResponseEntity.status(HttpStatus.CREATED).body(newStylist);
     }
+    
+
+    @PostMapping("/login")
+    public ResponseEntity<Stylist> loginStylist(@RequestBody Login login) {
+        try {
+            Stylist stylist = stylistService.loginStylist(login.getEmail(), login.getPassword());
+            return ResponseEntity.ok(stylist); // HTTP 200 with the stylist details
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null); // HTTP 401 Unauthorized
+        }
+    }
+
 }

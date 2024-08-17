@@ -37,10 +37,7 @@ public class Address extends BaseEntity{
 		// TODO Auto-generated constructor stub
 	}
 
-	public Address(String adrLine1, String adrLine2, @NotNull(message = "City is mandatory") String city,
-			@NotNull(message = "State is mandatory") String state,
-			@NotNull(message = "Country is mandatory") String country,
-			@NotNull(message = "Zip-Code is mandatory") String zipCode) {
+	public Address(String adrLine1, String adrLine2, String city, String state, String country, String zipCode) {
 		super();
 		this.adrLine1 = adrLine1;
 		this.adrLine2 = adrLine2;
@@ -103,5 +100,6 @@ public class Address extends BaseEntity{
 		return "Address [adrLine1=" + adrLine1 + ", adrLine2=" + adrLine2 + ", city=" + city + ", state=" + state
 				+ ", country=" + country + ", zipCode=" + zipCode + "]";
 	}
-
+	
+	
 }

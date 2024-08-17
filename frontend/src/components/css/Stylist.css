@@ -1,0 +1,66 @@
+
+.stylist-dashboard {
+    display: flex;
+  }
+  
+  .sidebar {
+    width: 25%;
+    padding: 10px;
+    background-color: #f4f4f4;
+  }
+  
+  .sidebar h3 {
+    margin-top: 0;
+  }
+  
+  .sidebar button {
+    display: block;
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .sidebar button:hover {
+    background-color: #0056b3;
+  }
+  
+  .content {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  .content h3 {
+    margin-top: 0;
+  }
+  
+  .content input {
+    display: block;
+    margin: 10px 0;
+    padding: 10px;
+    width: 100%;
+  }
+  
+  .content button {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .content button:hover {
+    background-color: #0056b3;
+  }
+  
+  .content ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .content ul li {
+    padding: 5px 0;
+  }
+  

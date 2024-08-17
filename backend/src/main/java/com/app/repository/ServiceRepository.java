@@ -8,4 +8,3 @@ public interface ServiceRepository extends JpaRepository<Services, Long>
 {
 	
 }
-

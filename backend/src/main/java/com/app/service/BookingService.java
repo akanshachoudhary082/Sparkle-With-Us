@@ -2,8 +2,9 @@ package com.app.service;
 
 import java.util.List;
 
+import com.app.dto.ApiResponse;
+import com.app.dto.BookingDTO;
 import com.app.entities.Booking;
-import com.app.entities.Customer;
 
 public interface BookingService 
 {
@@ -12,6 +13,7 @@ public interface BookingService
 	String deleteBookingById(Long id);
 	
 	Booking addNewBookingDetails(Booking booking);
+	//ApiResponse addNewBookingDetails(BookingDTO bookingDto);
 	
 	Booking updateBookingDetails(Booking booking);
 	
