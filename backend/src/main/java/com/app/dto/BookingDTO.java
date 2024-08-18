@@ -11,18 +11,25 @@ public class BookingDTO
 	private BookStatus bookingStatus;
 	private LocalDateTime bookingDateTime;
 	private Long customerId;
+	private Long timeslotId;
+	private Long serviceId;
 	
 	public BookingDTO() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public BookingDTO(Long bookingId, BookStatus bookingStatus, LocalDateTime bookingDateTime, Long customerId) {
+	
+	public BookingDTO(Long bookingId, BookStatus bookingStatus, LocalDateTime bookingDateTime, Long customerId,
+			Long timeslotId, Long serviceId) {
 		super();
 		this.bookingId = bookingId;
 		this.bookingStatus = bookingStatus;
 		this.bookingDateTime = bookingDateTime;
 		this.customerId = customerId;
+		this.timeslotId = timeslotId;
+		this.serviceId = serviceId;
 	}
+
 
 	public Long getBookingId() {
 		return bookingId;
@@ -56,10 +63,35 @@ public class BookingDTO
 		this.customerId = customerId;
 	}
 
+	
+	public Long getTimeslotId() {
+		return timeslotId;
+	}
+
+
+	public void setTimeslotId(Long timeslotId) {
+		this.timeslotId = timeslotId;
+	}
+
+
+	public Long getServiceId() {
+		return serviceId;
+	}
+
+
+	public void setServiceId(Long serviceId) {
+		this.serviceId = serviceId;
+	}
+
+
 	@Override
 	public String toString() {
 		return "BookingDTO [bookingId=" + bookingId + ", bookingStatus=" + bookingStatus + ", bookingDateTime="
-				+ bookingDateTime + ", customerId=" + customerId + "]";
+				+ bookingDateTime + ", customerId=" + customerId + ", timeslotId=" + timeslotId + ", serviceId="
+				+ serviceId + "]";
 	}
+
+
+	
 	
 }

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.app.dto.BookingDTO;
 import com.app.entities.Admin;
 import com.app.entities.Booking;
 import com.app.entities.Customer;
@@ -159,23 +160,42 @@ public class AdminController
 //    	bookingService.deleteBookingById(id);
 //        return ResponseEntity.noContent().build();
 //    }
-
-    @GetMapping("/booking/{id}")
-    public ResponseEntity<Booking> getBookingById(@PathVariable Long id) {
-    	Booking appointment = bookingService.getBookingDetailsById(id);
-        return ResponseEntity.ok(appointment);
-    }
-
+//
+//    @GetMapping("/booking/{id}")
+//    public ResponseEntity<Booking> getBookingById(@PathVariable Long id) {
+//    	Booking appointment = bookingService.getBookingDetailsById(id);
+//        return ResponseEntity.ok(appointment);
+//    }
+//
+//    @GetMapping("/booking")
+//    public ResponseEntity<List<Booking>> getAllBooking() {
+//        List<Booking> appointments = bookingService.getAllBookingDetails();
+//        return ResponseEntity.ok(appointments);
+//    }
+//    @GetMapping("/booking/sorted")
+//    public ResponseEntity<List<Booking>> getBookingSortedByDate() {
+//        List<Booking> sortedBookings = bookingService.findAllByOrderByBookingDateAsc();
+//        return ResponseEntity.ok(sortedBookings);
+//    }
     @GetMapping("/booking")
-    public ResponseEntity<List<Booking>> getAllBooking() {
-        List<Booking> appointments = bookingService.getAllBookingDetails();
-        return ResponseEntity.ok(appointments);
+    public ResponseEntity<List<BookingDTO>> getAllBookings() {
+        List<BookingDTO> bookings = bookingService.getAllBookingDetails();
+        return ResponseEntity.ok(bookings);
     }
+
+    // Get a booking by ID
+    @GetMapping("/booking/{id}")
+    public ResponseEntity<BookingDTO> getBookingById(@PathVariable Long id) {
+        BookingDTO bookingDTO = bookingService.getBookingDetailsById(id);
+        return ResponseEntity.ok(bookingDTO);
+    }
+    
     @GetMapping("/booking/sorted")
-    public ResponseEntity<List<Booking>> getBookingSortedByDate() {
-        List<Booking> sortedBookings = bookingService.findAllByOrderByBookingDateAsc();
-        return ResponseEntity.ok(sortedBookings);
+    public ResponseEntity<List<BookingDTO>> getAllBookingsOrderedByDate() {
+        List<BookingDTO> bookings = bookingService.findAllByOrderByBookingDateAsc();
+        return ResponseEntity.ok(bookings);
     }
+    
     
     //Service Management
     @GetMapping("/services")

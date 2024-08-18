@@ -174,6 +174,7 @@
 
 import React, { useState } from 'react';
 import axios from 'axios';
+import './css/Booking.css';
 
 const Booking = () => {
     const [selectedTimeSlot, setSelectedTimeSlot] = useState('');
@@ -233,8 +234,8 @@ const Booking = () => {
 
         const bookingData = {
             serviceId,
-            timeSlot: selectedTimeSlot,
-            customerName,
+            timeslotId: selectedTimeSlot,
+            customerId: customerName,
             bookingDateTime: formattedBookingDateTime,
         };
 
@@ -261,7 +262,7 @@ const Booking = () => {
     return (
         <div>
             <h1>Book a Service</h1>
-
+            <div className='booking'>
             <div>
                 <label htmlFor="serviceId">Service ID:</label>
                 <input
@@ -297,7 +298,7 @@ const Booking = () => {
                 <input
                     type="text"
                     id="customerName"
-                    placeholder="Your Name"
+                    placeholder="Customer Id"
                     value={customerName}
                     onChange={(e) => setCustomerName(e.target.value)}
                 />
@@ -334,6 +335,7 @@ const Booking = () => {
             )}
 
             <button onClick={handleBooking}>Book Now</button>
+        </div>
         </div>
     );
 };

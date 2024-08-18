@@ -1,156 +1,148 @@
-/* .booking-page {
+/* body {
     font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+  }
+  
+  .container {
+    width: 500px;
+    margin: 50px auto;
     padding: 20px;
-    max-width: 800px;
-    margin: 0 auto;
-    background-color: #f9f9f9;
-    border-radius: 8px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  input[type="text"], input[type="datetime-local"] {
+    width: 90%;
+    height: 40px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .booking button {
+    width: 20%;
+    height: 40px;
+    background-color: #614a5b;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 600px;
+  }
+  
+  button:hover {
+    background-color: #3e8e41;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  li {
+    margin-bottom: 10px;
+  }
+  
+  .selected-slot {
+    background-color: #4CAF50;
+    color: #fff;
+  }
+  
+  .available-time-slots {
+    margin-top: 20px;
+  }
+  
+  .available-time-slots h3 {
+    margin-bottom: 10px;
+  } */
+
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+}
+
+.booking {
+    width: 900px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.booking-page h1 {
+.booking h1 {
     text-align: center;
-    color: #333;
     margin-bottom: 20px;
 }
 
-.booking-form,
-.payment-form {
-    margin-bottom: 20px;
-}
-
-.booking-form h2,
-.payment-form h2 {
-    border-bottom: 2px solid #ddd;
-    padding-bottom: 10px;
-    margin-bottom: 15px;
-    color: #555;
-}
-
-label {
+.booking label {
     display: block;
     margin-bottom: 10px;
-    font-weight: bold;
-    color: #666;
 }
 
-input[type="text"],
-input[type="datetime-local"] {
-    width: calc(100% - 20px);
+.booking input[type="text"], 
+.booking input[type="datetime-local"] {
+    width: 90%;
+    height: 40px;
+    margin-bottom: 20px;
     padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+   
+    border: 2px solid #ccc;
+    border-radius: 5px;
 }
 
-input[type="text"]:focus,
-input[type="datetime-local"]:focus {
-    border-color: #0056b3;
-    outline: none;
-}
-
-button {
-    display: block;
-    width: 100%;
-    padding: 15px;
-    background-color: #0056b3;
+/* .booking button {
+    width: 20%;
+    height: 40px;
+    background-color: #614a5b;
     color: #fff;
-    border: none;
-    border-radius: 4px;
-    font-size: 16px;
-    cursor: pointer;
-    margin-top: 10px;
-}
-
-button:hover {
-    background-color: #004494;
-}
-
-.error-message,
-.success-message {
-    text-align: center;
     padding: 10px;
-    border-radius: 4px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 600px;
+ 
+}
+
+.booking button:hover {
+    background-color: #3e8e41;
+} */
+
+.booking ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.booking li {
+    margin-bottom: 10px;
+}
+
+.booking .selected-slot {
+    background-color: #4CAF50;
+    color: #fff;
+}
+
+.booking .available-time-slots {
     margin-top: 20px;
 }
 
-.error-message {
-    color: #d9534f;
-    background-color: #f2dede;
-    border: 1px solid #d9534f;
-}
-
-.success-message {
-    color: #5bc0de;
-    background-color: #d9edf7;
-    border: 1px solid #5bc0de;
-} */
-/* Booking.css */
-
-.booking-form {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-}
-
-.booking-form h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 24px;
-    color: #333;
-}
-
-.booking-form div {
-    margin-bottom: 15px;
-}
-
-.booking-form label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: #333;
-}
-
-.booking-form input,
-.booking-form select {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-.booking-form button {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 4px;
-    background-color: #007bff;
-    color: #fff;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.booking-form button:hover {
-    background-color: #0056b3;
-}
-
-.error-message,
-.success-message {
-    text-align: center;
-    font-size: 16px;
-    font-weight: bold;
-    margin-top: 10px;
-}
-
-.error-message {
-    color: #dc3545;
-}
-
-.success-message {
-    color: #28a745;
+.booking .available-time-slots h3 {
+    margin-bottom: 10px;
 }

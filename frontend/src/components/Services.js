@@ -354,23 +354,29 @@ import headerImage from '../images/services.jpg';
 // Import images
 import hairImage from '../images/hair.jpg';
 import makeupImage from '../images/Makeup.jpg';
-import massageImage from '../images/Massage.jpg';
+// import massageImage from '../images/Massage.jpg';
 import nailsImage from '../images/nails.jpg';
 import skinImage from '../images/Skin.jpg';
 import tanningImage from '../images/Tanning.jpg';
 import waxImage from '../images/Wax.jpg';
 import beardImage from '../images/Beard.jpg';
+import hairTreatImage from '../images/hairTreatImage.jpg';
+import spaImage from '../images/spaImage.jpg';
 
 // Create a mapping from service type to image
 const imageMap = {
-    HAIR_SERVICES: hairImage,
-    MAKEUP_SERVICE: makeupImage,
-    MASSAGE_THERAPY: massageImage,
     NAIL_ART: nailsImage,
     SKIN_CARE: skinImage,
-    TANNING: tanningImage,
+    HAIR_TREATMENTS: hairTreatImage,
+    HAIR_SERVICES: hairImage,
+    SPA_SERVICES: spaImage,
+    MAKEUP_SERVICE: makeupImage,
+    BEARD_GROOMING: beardImage,
+    // MASSAGE_THERAPY: massageImage,
     WAXING: waxImage,
-    BEARD_GROOMING: beardImage
+    TANNING: tanningImage
+    
+    
 };
 
 const Services = () => {
