@@ -25,9 +25,9 @@ public class TimeSlotController {
 
 	@GetMapping("/available")
 	public List<TimeSlot> getAvailableTimeSlots(@RequestParam Long serviceId,
-			@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime startDateTime,
-			@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime endDateTime) {
+			@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss") LocalDateTime startDateTime,
+			@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss") LocalDateTime endDateTime) {
 
-		return timeSlotService.getAvailableTimeSlots(serviceId, startDateTime, endDateTime, false);
+		return timeSlotService.getAvailableTimeSlots(serviceId, startDateTime, endDateTime, true);
 	}
 }
