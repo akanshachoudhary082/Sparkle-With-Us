@@ -14,19 +14,20 @@ import com.app.service.PaymentService;
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/payment")
-public class PaymentController 
-{
-	@Autowired
-	private PaymentService paymentService;
-	
-	public PaymentController() {
-		System.out.println("In Payment controller " + getClass());
-	}
-	
-	@PostMapping
-	public ApiResponse addPayment(@RequestBody PaymentDTO paymentDTO)
-	{
-		System.out.println("In add payment " + paymentDTO);
-		return paymentService.addNewPayment(paymentDTO);
-	}
+
+
+public class PaymentController {
+
+    @Autowired
+    private PaymentService paymentService;
+
+    @PostMapping
+    public ApiResponse addPayment(@RequestBody PaymentDTO paymentDTO) {
+        try {
+            return paymentService.addNewPayment(paymentDTO);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ApiResponse(false, "Failed to process payment: " + e.getMessage());
+        }
+    }
 }

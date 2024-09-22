@@ -14,6 +14,7 @@ import Booking from './components/Booking';
 import Customer from './components/Customer';
 import Admin from './components/Admin';
 import Stylist from './components/Stylist';
+import Payment from './components/Payment';
 import './App.css';
 
 
@@ -43,6 +44,7 @@ function App() {
         <Route path="/customer" element={<Customer/>} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/stylist" element={<Stylist />} />
+        <Route path="/payment" element={<Payment />} />
       
       </Routes>
       <Footer />

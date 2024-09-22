@@ -13,7 +13,7 @@ const AboutUs = () => {
       {/* Section with image on the left and content on the right */}
       <div className="about-us-content">
         <div className="about-us-left">
-          <img src={require('../images/girls.jpg')} alt="Sparkle and Beauty" className="side-image" />
+          <img src=  {require('../images/girls.jpg')} alt="Sparkle and Beauty" className="side-image" />
         </div>
         <div className="about-us-right">
           <h2 className="about-us-heading">Our Story</h2>
